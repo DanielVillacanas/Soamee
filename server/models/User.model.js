@@ -11,6 +11,10 @@ const userSchema = new Schema(
       type: string,
       required: true,
     },
+    favBooks: {
+      type: [Schema.Types.ObjectId],
+      ref: "Book",
+    },
   },
   {
     timestamps: true,

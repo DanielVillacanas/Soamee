@@ -10,3 +10,7 @@ const authorSchema = new Schema({
     required: true,
   },
 });
+
+const Author = model("Author", authorSchema);
+
+module.exports = Author;

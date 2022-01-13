@@ -1,11 +1,16 @@
-import * as PATHS from "../utils/paths";
-import HomePage from "../pages/HomePage";
+import Home from "../components/Home/Home";
+import NavBar from "../components/Navbar/NavBar";
 
 const routes = (props) => {
   return [
     {
-      path: PATHS.HOMEPAGE,
-      element: <HomePage {...props} />,
+      path: "/",
+      element: (
+        <>
+          <NavBar {...props} />
+          <Home {...props} />
+        </>
+      ),
     },
   ];
 };
