@@ -9,6 +9,9 @@ const authorSchema = new Schema({
     type: String,
     required: true,
   },
+  img_url: {
+    type: String,
+  },
 });
 
 const Author = model("Author", authorSchema);

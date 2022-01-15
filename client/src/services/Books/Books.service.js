@@ -7,7 +7,10 @@ class BookService {
       withCredentials: true,
     });
   }
-  createBook = (book) => this.app.post("/book", { book });
+  createBook = (Book) => {
+    console.log(Book);
+    return this.app.post("/book", Book);
+  };
   getAllBooks = () => this.app.get("/books");
   getOneBook = (id) => this.app.get(`/book/${id}`);
 }
