@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const authorSchema = new Schema({
-  fisrtName: {
+  firstName: {
     type: String,
     required: true,
   },

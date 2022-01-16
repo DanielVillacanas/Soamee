@@ -143,7 +143,7 @@ export default function NewBook(props) {
                         {({ active }) => (
                           <div className="flex justify-between pl-3 pr-3 pt-1 pb-1">
                             <p className="pl-3 pr-3 pt-1 pb-1">
-                              {auth.fisrtName} {auth.lastName}{" "}
+                              {auth.fisrtName} {auth.lastName}
                             </p>
                             <a
                               className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"

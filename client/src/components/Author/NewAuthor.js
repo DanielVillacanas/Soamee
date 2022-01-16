@@ -6,7 +6,7 @@ const uploadService = new UploadService();
 
 export default function NewAuthor(props) {
   const [author, setAuthor] = useState({
-    fisrtName: "",
+    firstName: "",
     lastName: "",
     img_url: "",
   });
@@ -59,9 +59,9 @@ export default function NewAuthor(props) {
             </label>
             <div className="mt-1">
               <input
-                id="fisrtName"
+                id="firstName"
                 onChange={handleInputChange}
-                name="fisrtName"
+                name="firstName"
                 type="text"
                 required
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
