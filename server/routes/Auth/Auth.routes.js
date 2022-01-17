@@ -8,6 +8,7 @@ router.post("/signUp", (req, res) => {
   let { userName, password } = req.body;
 
   User.findOne({ userName })
+    .populate("favBooks")
     .then((response) => {
       const bcryptSalt = 10;
       const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -16,26 +17,24 @@ router.post("/signUp", (req, res) => {
       response !== null
         ? res.status(500).send("Error usuario ya registrado")
         : User.create({ userName, password: hashPass }).then((user) => {
-            console.log(user);
             req.session.currentUser = user;
             return res.json(user);
           });
     })
-
-    .catch((err) => res.status(500).send(`Error al crear Usuario ${err}`));
+    .catch((err) => res.status(500).send({ err }));
 });
 
 router.post("/login", (req, res) => {
   const { userName, password } = req.body;
-  console.log(userName, password);
+
   User.findOne({ userName })
+    .populate("favBooks")
     .then((user) => {
-      console.log(user);
       bcrypt.compareSync(password, user.password)
-        ? ((req.session.currentUser = user), res.json({ user: user, type: "user" }))
+        ? ((req.session.currentUser = user), res.json({ user: user }))
         : res.status(500).send("Error contraseña incorrecta!");
     })
-    .catch((err) => res.status(500).send("Error usuario no encontrado"));
+    .catch((err) => res.status(500).send("Error al incio de sesión, compruebe usuario/contraseña"));
 });
 
 router.get("/isLoggedIn", (req, res) => {
@@ -43,6 +42,7 @@ router.get("/isLoggedIn", (req, res) => {
     ? res.json(req.session.currentUser)
     : res.status(401).json({ code: 401, message: "Unauthorized" });
 });
+
 router.get("/logout", (req, res) => {
   req.session.destroy((err) => res.status(200).json({ code: 200, message: "Logout successful" }));
 });

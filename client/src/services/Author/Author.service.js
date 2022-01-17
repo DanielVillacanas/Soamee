@@ -11,6 +11,7 @@ class AuthorService {
   createAuthor = (author) => this.app.post("/author", { author });
   getAllAuthor = () => this.app.get("/authors");
   getOneAuthor = (id) => this.app.get(`/authors/${id}`);
+  addNewBookAuthor = (id, authors) => this.app.put(`/authorNewBook/${id}`, { authors });
 }
 
 export default AuthorService;

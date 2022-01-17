@@ -50,7 +50,7 @@ export default function NewAuthor(props) {
 
   return (
     <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
-      <p className="text-center font-semibold text-lg text-green-800">Crear un nuevo Autor</p>
+      <p className="text-center font-semibold text-lg text-cyan-800">Crear un nuevo Autor</p>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
@@ -64,7 +64,7 @@ export default function NewAuthor(props) {
                 name="firstName"
                 type="text"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm"
               />
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function NewAuthor(props) {
                 name="lastName"
                 type="text"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm"
               />
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function NewAuthor(props) {
                   <>
                     <label className="inline-block mb-2 text-gray-500">Nueva foto</label>
                     <div className="flex items-center justify-center w-full">
-                      <label className="flex flex-col w-full h-32 border-4 border-green-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                      <label className="flex flex-col w-full h-32 border-4 border-cyan-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
                         <div className="flex flex-col items-center justify-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ export default function NewAuthor(props) {
                           {loadingImg && (
                             <button
                               type="button"
-                              className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-green-500 hover:bg-green-400 transition ease-in-out duration-150 cursor-not-allowed"
+                              className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-cyan-500 hover:bg-cyan-400 transition ease-in-out duration-150 cursor-not-allowed"
                               disabled=""
                             >
                               <svg
@@ -168,7 +168,7 @@ export default function NewAuthor(props) {
           <div className="flex justify-center p-2">
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
             >
               Crear
             </button>

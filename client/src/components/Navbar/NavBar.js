@@ -215,7 +215,11 @@ export default function NavBar(props) {
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                               >
                                 <Fragment>
-                                  <NewBook closeModal={setCloseBook} authors={authors} />
+                                  <NewBook
+                                    closeModal={setCloseBook}
+                                    authors={authors}
+                                    setUpdateBooks={props.setUpdateBooks}
+                                  />
                                 </Fragment>
                               </Transition.Child>
                             </div>

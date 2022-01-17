@@ -12,6 +12,10 @@ const authorSchema = new Schema({
   img_url: {
     type: String,
   },
+  books: {
+    type: [Schema.Types.ObjectId],
+    ref: "Book",
+  },
 });
 
 const Author = model("Author", authorSchema);

@@ -4,8 +4,10 @@ import UploadService from "../../services/UploadServices/UploadServices";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import AuthorService from "../../services/Author/Author.service";
 
 const bookService = new BookService();
+const authorService = new AuthorService();
 const uploadService = new UploadService();
 
 export default function NewBook(props) {
@@ -19,16 +21,19 @@ export default function NewBook(props) {
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [loadingImg, setLoadingImg] = useState(false);
 
-  const handleSubmit = () => {
-    console.log(Book);
+  const handleSubmit = (e) => {
     bookService
       .createBook(Book)
       .then((response) => {
-        console.log(response);
-        props.closeModal();
-        props.updateBooks();
+        return authorService
+          .addNewBookAuthor(response.data._id, selectedAuthors)
+          .then((response) => {
+            props.closeModal();
+            props.setUpdateBooks(Book);
+          });
       })
       .catch((error) => console.error(error));
+    e.preventDefault();
   };
 
   const handleInputChange = (e) => {
@@ -139,18 +144,19 @@ export default function NewBook(props) {
                 >
                   <div className="py-1">
                     {authors?.map((auth) => (
-                      <Menu.Item>
+                      <Menu.Item key={auth._id}>
                         {({ active }) => (
                           <div className="flex justify-between pl-3 pr-3 pt-1 pb-1">
                             <p className="pl-3 pr-3 pt-1 pb-1">
-                              {auth.fisrtName} {auth.lastName}
+                              {auth.firstName} {auth.lastName}
                             </p>
-                            <a
+                            <button
+                              type="button"
                               className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
                               onClick={() => addAuthor(auth)}
                             >
                               Añadir
-                            </a>
+                            </button>
                           </div>
                         )}
                       </Menu.Item>
@@ -164,8 +170,11 @@ export default function NewBook(props) {
             <ul>
               <h5 className="mb-3">Autores :</h5>
               {selectedAuthors?.map((auth) => (
-                <li className="rounded-full bg-cyan-500 text-white shadow-sm w-cover text-center pb-2 pt-2 mb-3 ">
-                  {auth.fisrtName} {auth.lastName}
+                <li
+                  className="rounded-full bg-cyan-500 text-white shadow-sm w-cover text-center pb-2 pt-2 mb-3 "
+                  key={auth._id}
+                >
+                  {auth.firstName} {auth.lastName}
                 </li>
               ))}
             </ul>

@@ -16,13 +16,7 @@ export default function LogIn(props) {
 
   let handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
-    if (e.currentTarget.name === "password2" && e.currentTarget.value !== "") {
-      e.currentTarget.value !== user.password
-        ? setErrMessage("Las contraseñas no coinciden")
-        : setErrMessage(undefined);
-    } else {
-      setErrMessage(undefined);
-    }
+    setErrMessage(undefined);
     setUser((prevState) => {
       return {
         ...prevState,
@@ -40,7 +34,9 @@ export default function LogIn(props) {
           props.isLoggedIn();
           response.data && navigate({ pathname: "/" });
         })
-        .catch((err) => setErrMessage(err.response.data));
+        .catch((err) => {
+          setErrMessage(err.response.data);
+        });
   };
 
   return (
@@ -80,23 +76,7 @@ export default function LogIn(props) {
                 />
               </div>
             </div>
-            <div>
-              <label htmlFor="password2" className="block text-sm font-medium text-gray-700">
-                Comprobación de contraseña
-              </label>
-              <div className="mt-1">
-                <input
-                  id="password2"
-                  name="password2"
-                  type="password"
-                  onChange={handleInputChange}
-                  value={user.password2}
-                  required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm"
-                />
-                {errMessage && <p className="text-red-500">{errMessage}</p>}
-              </div>
-            </div>
+            {errMessage && <div className="text-red-500">{errMessage}</div>}
             <div>
               <button
                 type="submit"
