@@ -3,7 +3,7 @@ import axios from "axios";
 class AuthorService {
   constructor() {
     this.app = axios.create({
-      baseURL: `http://localhost:5000/api/authors`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}/api/authors`,
       withCredentials: true,
     });
   }

@@ -20,6 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && echo '/* /index.html 200' | cat >build/_redirects ",
+    "deploy": "rm -rf build/*; npm run build; cd ..; rm -rf server/public/*; mv client/build/* server/public; git add .; git commit -m deploy; git push heroku master",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

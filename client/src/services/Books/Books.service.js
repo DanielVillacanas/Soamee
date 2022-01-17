@@ -3,7 +3,7 @@ import axios from "axios";
 class BookService {
   constructor() {
     this.app = axios.create({
-      baseURL: `http://localhost:5000/api/books`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}/api/books`,
       withCredentials: true,
     });
   }
