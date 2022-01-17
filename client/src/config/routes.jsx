@@ -2,7 +2,6 @@ import LogIn from "../components/Auth/LogIn";
 import SignUp from "../components/Auth/SignUp";
 import AllBooks from "../components/Books/AllBooks";
 import BookDetails from "../components/Books/BookDetails";
-import App from "../App";
 import FavouriteBooks from "../components/Books/FavouriteBooks";
 import AllAuthors from "../components/Author/AllAuthors";
 import AuthorDetails from "../components/Author/AuthorDetails";

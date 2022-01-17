@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.use(
     cors({
       credentials: true,
-      origin: "https://soamee-challenge.herokuapp.com/",
+      origin: process.env.ORIGIN || "https://soamee-challenge.herokuapp.com/",
     })
   );
 

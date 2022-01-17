@@ -1,5 +1,5 @@
 {
-  "name": "Soamee-client",
+  "name": "soamee-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,9 +18,8 @@
     "tailwind": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && echo '/* /index.html 200' | cat >build/_redirects ",
-    "deploy": "rm -rf build/*; npm run build; cd ..; rm -rf server/public/*; mv client/build/* server/public; git add .; git commit -m deploy; git push heroku master",
+    "start": "REACT_APP_BASE_URL=http://localhost:5000/api react-scripts start",
+    "build": "REACT_APP_BASE_URL=https://soamee-challenge.herokuapp.com/api REACT_APP_SOCKET_URL=https://soamee-challenge.herokuapp.com/ react-scripts build && echo '/* /index.html 200' | cat >build/_redirects ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
