@@ -19,7 +19,7 @@ export default function AllBooks(props) {
   useEffect(() => {
     getAllBooks();
     props.user && getAllFavBooks();
-  }, []);
+  }, [props.updateBooks]);
 
   const getAllFavBooks = () => {
     booksService

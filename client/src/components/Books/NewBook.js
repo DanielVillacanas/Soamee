@@ -20,25 +20,26 @@ export default function NewBook(props) {
   const [authors] = useState(props.authors);
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [loadingImg, setLoadingImg] = useState(false);
+  const [errMessage, setErrMessage] = useState();
 
   const handleSubmit = (e) => {
-    bookService
-      .createBook(Book)
-      .then((response) => {
-        return authorService
-          .addNewBookAuthor(response.data._id, selectedAuthors)
-          .then((response) => {
-            props.closeModal();
-            props.setUpdateBooks(Book);
-          });
-      })
-      .catch((error) => console.error(error));
+    !errMessage &&
+      bookService
+        .createBook(Book)
+        .then((response) => {
+          return authorService.addNewBookAuthor(response.data._id, selectedAuthors);
+        })
+        .then((response) => {
+          props.closeModal();
+          props.setUpdateBooks(Book);
+        })
+        .catch((error) => setErrMessage(error.response.data));
     e.preventDefault();
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
-
+    setErrMessage(undefined);
     setBook((prevState) => {
       return {
         ...prevState,
@@ -261,6 +262,7 @@ export default function NewBook(props) {
               </div>
             </div>
           </div>
+          {errMessage && <div className="text-red-500">{errMessage}</div>}
           <div className="flex justify-center p-2">
             <button
               type="submit"

@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/Soamee";
+
+const { MONGODB_URI, MONGODB_URI_TEST, NODE_ENV } = process.env;
+
+NODE_ENV === "test" ? (MONGO_URI = MONGODB_URI_TEST) : (MONGO_URI = MONGODB_URI);
+// const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/Soamee";
 
 mongoose
   .connect(MONGO_URI)

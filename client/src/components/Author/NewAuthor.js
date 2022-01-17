@@ -13,15 +13,15 @@ export default function NewAuthor(props) {
 
   const [loadingImg, setLoadingImg] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     auhtorService
       .createAuthor(author)
       .then((response) => {
-        console.log(response);
         props.closeModal();
         props.updateAuthors();
       })
       .catch((error) => console.error(error));
+    e.preventDefault();
   };
 
   const handleInputChange = (e) => {

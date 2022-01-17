@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "test": "NODE_ENV=test jest --verbose"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -15,12 +16,15 @@
     "dotenv": "^11.0.0",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "jest": "^27.4.7",
     "mongoose": "^6.1.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "multer-storage-cloudinary": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "@testing-library/react": "^12.1.2",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.1"
   }
 }

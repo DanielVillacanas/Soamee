@@ -2,13 +2,18 @@ const router = require("express").Router();
 const Book = require("../../models/Book.model");
 const User = require("../../models/User.model");
 const { isLoggedIn } = require("../../middlewares/isloggedIn");
+const { response } = require("express");
 
 router.post("/book", isLoggedIn, (req, res) => {
   const book = req.body;
-
-  Book.create(book)
-    .then((response) => res.json(response))
-    .catch((err) => res.status(500).send(err));
+  const isbn = book.isbn;
+  Book.findOne({ isbn })
+    .then((response) => {
+      response === null
+        ? Book.create(book).then((response) => res.json(response))
+        : res.status(500).send("Ya existe un libro con el mismo ISBN");
+    })
+    .catch((err) => res.status(500).send("Error al crear libro"));
 });
 
 router.get("/books", (req, res) => {
